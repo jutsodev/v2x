@@ -282,7 +282,6 @@ struct ConfigImportView: View {
                 Image(systemName: "checkmark.circle.fill")
                     .font(.system(size: 44))
                     .foregroundColor(.v2xGreen)
-                    .symbolEffect(.bounce)
 
                 Text("Конфигурация импортирована успешно")
                     .font(.system(size: 16, weight: .semibold))

@@ -364,7 +364,7 @@ struct ConnectionDetailView: View {
                     detailDivider
                     detailRow(label: "Сервер", value: V2XCrypto.obfuscateAddress(profile.serverAddress))
                     detailDivider
-                    detailRow(label: "Порт", value: "\(profile.serverPort)")
+                    detailRow(label: "Порт", value: "\(profile.port)")
                 }
 
                 detailDivider

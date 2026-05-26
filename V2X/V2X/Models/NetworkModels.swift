@@ -230,6 +230,15 @@ struct V2XSubscription: Identifiable, Codable, Hashable {
         self.autoUpdateInterval = autoUpdateInterval
         self.userAgent = userAgent
     }
+
+    static let sample = V2XSubscription(
+        name: "V2X Premium",
+        url: "https://sub.v2x.network/premium",
+        profileCount: 12,
+        lastUpdated: Date(),
+        isAutoUpdate: true,
+        autoUpdateInterval: 3600
+    )
 }
 
 // MARK: - Import Result

@@ -301,7 +301,7 @@ struct MainView: View {
                                     .foregroundColor(.v2xTextTertiary)
                             }
                             Spacer()
-                            Text("\(server.ping) ms")
+                            Text("\(server.ping ?? 0) ms")
                                 .font(.system(size: 13, weight: .bold, design: .monospaced))
                                 .foregroundColor(.v2xGreen)
                         }

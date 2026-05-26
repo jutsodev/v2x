@@ -9,7 +9,7 @@ final class ProfileManager: ObservableObject {
 
     @Published var profiles: [VPNProfile] = VPNProfile.samples
     @Published var subscriptions: [V2XSubscription] = [V2XSubscription.sample]
-    @Published var routingRules: [RoutingRule] = RoutingRule.samples
+    @Published var routingRules: [RoutingRule] = RoutingRule.defaults
     @Published var dnsConfigurations: [DNSConfiguration] = DNSConfiguration.presets
     @Published var activeDNS: DNSConfiguration? = DNSConfiguration.presets.first
     @Published var geoFiles: [GeoFile] = GeoFile.defaults
@@ -203,11 +203,10 @@ final class ProfileManager: ObservableObject {
                 id: subscription.id,
                 name: subscription.name,
                 url: subscription.url,
-                lastUpdated: Date(),
                 profileCount: subscription.profileCount + Int.random(in: 0...3),
-                isActive: subscription.isActive,
-                autoUpdate: subscription.autoUpdate,
-                updateInterval: subscription.updateInterval
+                lastUpdated: Date(),
+                isAutoUpdate: subscription.isAutoUpdate,
+                autoUpdateInterval: subscription.autoUpdateInterval
             )
         }
     }
@@ -221,18 +220,6 @@ final class ProfileManager: ObservableObject {
     // MARK: - DNS
     func setActiveDNS(_ dns: DNSConfiguration) {
         activeDNS = dns
-        for i in dnsConfigurations.indices {
-            dnsConfigurations[i] = DNSConfiguration(
-                id: dnsConfigurations[i].id,
-                name: dnsConfigurations[i].name,
-                primaryDNS: dnsConfigurations[i].primaryDNS,
-                secondaryDNS: dnsConfigurations[i].secondaryDNS,
-                dnsOverHTTPS: dnsConfigurations[i].dnsOverHTTPS,
-                dnsOverTLS: dnsConfigurations[i].dnsOverTLS,
-                isActive: dnsConfigurations[i].id == dns.id,
-                type: dnsConfigurations[i].type
-            )
-        }
     }
 
     // MARK: - GeoFiles

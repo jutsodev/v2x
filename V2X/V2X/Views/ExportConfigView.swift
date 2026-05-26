@@ -248,26 +248,26 @@ struct ExportConfigView: View {
         switch exportFormat {
         case .url:
             exportedText = selected.map { profile in
-                "\(profile.protocolType.urlScheme)://\(profile.serverAddress):\(profile.serverPort)#\(profile.name)"
+                "\(profile.protocolType.urlScheme)://\(profile.serverAddress):\(profile.port)#\(profile.name)"
             }.joined(separator: "\n")
 
         case .base64:
             let urls = selected.map { profile in
-                "\(profile.protocolType.urlScheme)://\(profile.serverAddress):\(profile.serverPort)#\(profile.name)"
+                "\(profile.protocolType.urlScheme)://\(profile.serverAddress):\(profile.port)#\(profile.name)"
             }.joined(separator: "\n")
-            exportedText = urls.base64Encoded
+            exportedText = urls.base64Encoded ?? ""
 
         case .json:
             let configs = selected.map { profile in
                 """
-                {"name":"\(profile.name)","protocol":"\(profile.protocolType.rawValue)","server":"\(profile.serverAddress)","port":\(profile.serverPort)}
+                {"name":"\(profile.name)","protocol":"\(profile.protocolType.rawValue)","server":"\(profile.serverAddress)","port":\(profile.port)}
                 """
             }
             exportedText = "[\(configs.joined(separator: ","))]"
 
         case .qrcode:
             exportedText = selected.map { profile in
-                "\(profile.protocolType.urlScheme)://\(profile.serverAddress):\(profile.serverPort)#\(profile.name)"
+                "\(profile.protocolType.urlScheme)://\(profile.serverAddress):\(profile.port)#\(profile.name)"
             }.joined(separator: "\n")
         }
 
