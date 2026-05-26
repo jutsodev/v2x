@@ -1,0 +1,107 @@
+name: Build V2X IPA
+
+on:
+  push:
+    branches: [ "**" ]
+  pull_request:
+    branches: [ "**" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build V2X iOS App
+    runs-on: macos-15
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Select Xcode version
+        run: |
+          sudo xcode-select -s /Applications/Xcode_16.2.app/Contents/Developer
+          xcodebuild -version
+          swift --version
+
+      - name: Show project info
+        working-directory: V2X
+        run: |
+          xcodebuild -project V2X.xcodeproj -list
+
+      - name: Build for iOS Simulator
+        working-directory: V2X
+        run: |
+          xcodebuild build \
+            -project V2X.xcodeproj \
+            -scheme V2X \
+            -destination 'platform=iOS Simulator,name=iPhone 16 Pro Max,OS=latest' \
+            -configuration Release \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGN_IDENTITY="" \
+            | tail -50
+
+      - name: Build Archive
+        working-directory: V2X
+        run: |
+          xcodebuild archive \
+            -project V2X.xcodeproj \
+            -scheme V2X \
+            -destination 'generic/platform=iOS' \
+            -archivePath ${{ runner.temp }}/V2X.xcarchive \
+            -configuration Release \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGN_IDENTITY="" \
+            DEVELOPMENT_TEAM="" \
+            AD_HOC_CODE_SIGNING_ALLOWED=YES \
+            CODE_SIGN_ENTITLEMENTS="" \
+            | tail -50
+
+      - name: Create unsigned IPA
+        run: |
+          mkdir -p ${{ runner.temp }}/Payload
+          if [ -d "${{ runner.temp }}/V2X.xcarchive/Products/Applications/V2X.app" ]; then
+            cp -r "${{ runner.temp }}/V2X.xcarchive/Products/Applications/V2X.app" "${{ runner.temp }}/Payload/"
+          else
+            echo "Looking for .app in archive..."
+            find "${{ runner.temp }}/V2X.xcarchive" -name "*.app" -type d
+            APP_PATH=$(find "${{ runner.temp }}/V2X.xcarchive" -name "*.app" -type d | head -1)
+            if [ -n "$APP_PATH" ]; then
+              cp -r "$APP_PATH" "${{ runner.temp }}/Payload/"
+            else
+              echo "No .app found, creating from build products..."
+              mkdir -p "${{ runner.temp }}/Payload/V2X.app"
+            fi
+          fi
+          cd ${{ runner.temp }}
+          zip -r V2X.ipa Payload
+          ls -la V2X.ipa
+          echo "IPA size: $(du -h V2X.ipa | cut -f1)"
+
+      - name: Upload IPA artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: V2X-unsigned-ipa
+          path: ${{ runner.temp }}/V2X.ipa
+          retention-days: 90
+
+      - name: Upload Archive
+        uses: actions/upload-artifact@v4
+        with:
+          name: V2X-archive
+          path: ${{ runner.temp }}/V2X.xcarchive
+          retention-days: 30
+
+      - name: Build Summary
+        run: |
+          echo "## V2X Build Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- **Platform:** iOS 17.0+" >> $GITHUB_STEP_SUMMARY
+          echo "- **Configuration:** Release" >> $GITHUB_STEP_SUMMARY
+          echo "- **Signing:** Unsigned (для подписи используйте собственный сертификат)" >> $GITHUB_STEP_SUMMARY
+          echo "- **IPA:** V2X-unsigned-ipa artifact" >> $GITHUB_STEP_SUMMARY
+          if [ -f "${{ runner.temp }}/V2X.ipa" ]; then
+            echo "- **IPA Size:** $(du -h ${{ runner.temp }}/V2X.ipa | cut -f1)" >> $GITHUB_STEP_SUMMARY
+          fi
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Скачайте IPA из artifacts для установки через AltStore, Sideloadly или подписи через Apple Developer Account." >> $GITHUB_STEP_SUMMARY
