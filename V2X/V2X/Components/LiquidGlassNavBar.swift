@@ -291,7 +291,7 @@ struct AnimatedCounter: View {
         Text("\(displayValue)")
             .font(font)
             .foregroundColor(color)
-            .contentTransition(.numericText(value: displayValue))
+            .contentTransition(.numericText(value: Double(displayValue)))
             .onAppear {
                 animateToValue()
             }

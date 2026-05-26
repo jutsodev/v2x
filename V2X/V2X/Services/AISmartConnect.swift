@@ -19,7 +19,7 @@ final class AISmartConnect: ObservableObject {
     @Published var speedScore: Double = 0.89
     @Published var latencyScore: Double = 0.95
 
-    @Published var availableServers: [ServerNode] = ServerNode.samples
+    @Published var availableServers: [ServerNode] = ServerNode.sampleServers
 
     struct AnalysisResult: Identifiable {
         let id = UUID()
@@ -102,7 +102,7 @@ final class AISmartConnect: ObservableObject {
                 server: server,
                 score: score,
                 protocol_: protocols.randomElement() ?? .vlessReality,
-                estimatedPing: server.ping,
+                estimatedPing: server.ping ?? 0,
                 estimatedSpeed: "\(Int.random(in: 100...1000)) Mbps",
                 reason: generateReason(score: score)
             ))
