@@ -121,7 +121,7 @@ struct ThreatShieldView: View {
                             endPoint: .trailing
                         )
                     )
-                    .contentTransition(.numericText(value: threatShield.totalBlocked))
+                    .contentTransition(.numericText(value: Double(threatShield.totalBlocked)))
 
                 HStack(spacing: 16) {
                     miniStat(value: "\(threatShield.trackersBlocked)", label: "Трекеры", color: .v2xPurple)

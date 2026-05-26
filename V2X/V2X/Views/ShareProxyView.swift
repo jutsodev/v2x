@@ -287,7 +287,7 @@ struct ShareProxyView: View {
                         Spacer()
 
                         VStack(alignment: .trailing, spacing: 2) {
-                            Text(String.formatBytes(device.bytesTransferred))
+                            Text(String.formatBytes(Int64(device.bytesTransferred)))
                                 .font(.system(size: 11, weight: .semibold, design: .monospaced))
                                 .foregroundColor(.v2xCyan)
                             Text(device.connectedAt.timeAgoString)

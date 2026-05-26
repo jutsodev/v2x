@@ -154,7 +154,7 @@ struct SplashView: View {
             // Particle background
             if particlesVisible {
                 ForEach(0..<30, id: \.self) { i in
-                    SplashParticle(index: i)
+                    ContentSplashParticle(index: i)
                 }
             }
 
@@ -248,7 +248,7 @@ struct SplashView: View {
     }
 }
 
-struct SplashParticle: View {
+struct ContentSplashParticle: View {
     let index: Int
     @State private var offset: CGSize = .zero
     @State private var opacity: Double = 0

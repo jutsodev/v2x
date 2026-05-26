@@ -419,9 +419,9 @@ struct NetworkDiagnosticsView: View {
                 sectionDivider
                 interfaceRow(label: "BSSID", value: networkMonitor.bssid)
                 sectionDivider
-                interfaceRow(label: "RX Bytes", value: String.formatBytes(networkMonitor.rxBytes))
+                interfaceRow(label: "RX Bytes", value: String.formatBytes(Int64(networkMonitor.rxBytes)))
                 sectionDivider
-                interfaceRow(label: "TX Bytes", value: String.formatBytes(networkMonitor.txBytes))
+                interfaceRow(label: "TX Bytes", value: String.formatBytes(Int64(networkMonitor.txBytes)))
                 sectionDivider
                 interfaceRow(label: "RX Packets", value: "\(networkMonitor.rxPackets)")
                 sectionDivider
