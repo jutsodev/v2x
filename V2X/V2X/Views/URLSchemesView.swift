@@ -24,8 +24,8 @@ struct URLSchemesView: View {
                     headerCard
 
                     // Scheme sections
-                    ForEach(schemesByCategory, id: \.0) { category, schemes in
-                        schemeCategorySection(title: category.rawValue, schemes: schemes)
+                    ForEach(schemesByCategory, id: \.0) { pair in
+                        schemeCategorySection(title: pair.0.rawValue, schemes: pair.1)
                     }
 
                     // Info card

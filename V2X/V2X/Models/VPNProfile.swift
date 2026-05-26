@@ -372,55 +372,6 @@ struct TrafficStats: Equatable {
     )
 }
 
-// MARK: - URL Scheme Model
-struct URLSchemeItem: Identifiable {
-    let id = UUID()
-    let scheme: String
-    let description: String
-    let category: URLSchemeCategory
-    let hasParameter: Bool
-
-    var displayScheme: String {
-        scheme
-    }
-
-    enum URLSchemeCategory: String, CaseIterable {
-        case launchTunnel = "ЗАПУСТИТЬ ТУННЕЛЬ"
-        case stopConnection = "ОСТАНОВИТЬ СОЕДИНЕНИЕ"
-        case toggleConnection = "ПЕРЕКЛЮЧИТЬ СОЕДИНЕНИЕ"
-        case addConfig = "ДОБАВИТЬ КОНФИГУРАЦИЮ"
-        case importProtocol = "ИМПОРТ ПРОТОКОЛОВ"
-        case routing = "РОУТИНГ"
-    }
-
-    static let allSchemes: [URLSchemeItem] = [
-        // Launch
-        URLSchemeItem(scheme: "v2x://connect", description: "Запустить VPN-соединение", category: .launchTunnel, hasParameter: false),
-        URLSchemeItem(scheme: "v2x://open", description: "Открыть приложение и подключиться", category: .launchTunnel, hasParameter: false),
-        // Stop
-        URLSchemeItem(scheme: "v2x://disconnect", description: "Остановить VPN-соединение", category: .stopConnection, hasParameter: false),
-        URLSchemeItem(scheme: "v2x://close", description: "Закрыть соединение", category: .stopConnection, hasParameter: false),
-        // Toggle
-        URLSchemeItem(scheme: "v2x://toggle", description: "Переключить состояние VPN", category: .toggleConnection, hasParameter: false),
-        // Add Config
-        URLSchemeItem(scheme: "v2x://add/{url}", description: "Добавить конфигурацию по URL", category: .addConfig, hasParameter: true),
-        URLSchemeItem(scheme: "v2x://crypt/{url}", description: "Добавить зашифрованную конфигурацию", category: .addConfig, hasParameter: true),
-        URLSchemeItem(scheme: "v2x://crypt2/{url}", description: "Добавить конфигурацию (шифрование v2)", category: .addConfig, hasParameter: true),
-        URLSchemeItem(scheme: "v2x://crypt3/{url}", description: "Добавить конфигурацию (шифрование v3)", category: .addConfig, hasParameter: true),
-        // Import Protocols
-        URLSchemeItem(scheme: "v2x://import/vless", description: "Импортировать VLESS конфигурацию", category: .importProtocol, hasParameter: false),
-        URLSchemeItem(scheme: "v2x://import/trojan", description: "Импортировать Trojan конфигурацию", category: .importProtocol, hasParameter: false),
-        URLSchemeItem(scheme: "v2x://import/vmess", description: "Импортировать VMess конфигурацию", category: .importProtocol, hasParameter: false),
-        URLSchemeItem(scheme: "v2x://import/hysteria2", description: "Импортировать Hysteria2 конфигурацию", category: .importProtocol, hasParameter: false),
-        URLSchemeItem(scheme: "v2x://import/tuic", description: "Импортировать TUIC конфигурацию", category: .importProtocol, hasParameter: false),
-        URLSchemeItem(scheme: "v2x://import/any", description: "Универсальный импорт любого протокола", category: .importProtocol, hasParameter: false),
-        // Routing
-        URLSchemeItem(scheme: "v2x://routing/add/{base64}", description: "Добавить правило роутинга", category: .routing, hasParameter: true),
-        URLSchemeItem(scheme: "v2x://routing/onadd/{base64}", description: "Добавить правило при подключении", category: .routing, hasParameter: true),
-        URLSchemeItem(scheme: "v2x://routing/off", description: "Отключить роутинг", category: .routing, hasParameter: false),
-    ]
-}
-
 // MARK: - DNS Configuration
 struct DNSConfiguration: Codable, Equatable, Identifiable {
     let id: UUID

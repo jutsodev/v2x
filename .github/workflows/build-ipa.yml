@@ -48,7 +48,7 @@ jobs:
             CODE_SIGNING_ALLOWED=NO \
             CODE_SIGNING_REQUIRED=NO \
             CODE_SIGN_IDENTITY="" \
-            | tail -50
+            2>&1 | tail -200
 
       - name: Build Archive
         working-directory: V2X
@@ -65,7 +65,7 @@ jobs:
             DEVELOPMENT_TEAM="" \
             AD_HOC_CODE_SIGNING_ALLOWED=YES \
             CODE_SIGN_ENTITLEMENTS="" \
-            | tail -50
+            2>&1 | tail -200
 
       - name: Create unsigned IPA
         run: |
