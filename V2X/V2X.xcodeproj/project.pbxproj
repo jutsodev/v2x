@@ -82,11 +82,11 @@
 		10A024B70CF0464D80A9ED21 /* PulseParticles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulseParticles.swift; sourceTree = "<group>"; };
 		77403BB9CFA54DCF929E532D /* ScoreGauge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreGauge.swift; sourceTree = "<group>"; };
 		1FE0BC95FF6940579D43F912 /* TrafficGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrafficGraph.swift; sourceTree = "<group>"; };
-		0C02CD95CBEE4074B49B71D3 /* Animation+Spring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animation+Spring.swift; sourceTree = "<group>"; };
-		604FDABDD43448579078784F /* Color+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color+Theme.swift; sourceTree = "<group>"; };
-		CA52DA55F60B4DF5A13FAD58 /* String+Crypto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String+Crypto.swift; sourceTree = "<group>"; };
-		038430B0D1034A0DAE8EA3A7 /* View+LiquidGlass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View+LiquidGlass.swift; sourceTree = "<group>"; };
-		271D22BC9CBA4D09B5D7CB23 /* View+Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View+Modifiers.swift; sourceTree = "<group>"; };
+		0C02CD95CBEE4074B49B71D3 /* Animation+Spring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Animation+Spring.swift"; sourceTree = "<group>"; };
+		604FDABDD43448579078784F /* Color+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Theme.swift"; sourceTree = "<group>"; };
+		CA52DA55F60B4DF5A13FAD58 /* String+Crypto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Crypto.swift"; sourceTree = "<group>"; };
+		038430B0D1034A0DAE8EA3A7 /* View+LiquidGlass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+LiquidGlass.swift"; sourceTree = "<group>"; };
+		271D22BC9CBA4D09B5D7CB23 /* View+Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Modifiers.swift"; sourceTree = "<group>"; };
 		FB29F298D06143948068B6F2 /* NetworkModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkModels.swift; sourceTree = "<group>"; };
 		5BADCF7991D0428DACE6FF75 /* ThemeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeType.swift; sourceTree = "<group>"; };
 		D0DDE2BFAC2D473BBC7FACBC /* URLSchemeItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSchemeItem.swift; sourceTree = "<group>"; };
