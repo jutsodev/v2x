@@ -18,9 +18,9 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          git clone --depth 1 --branch ${{ github.head_ref || github.ref_name }} https://github.com/${{ github.repository }}.git .
+          git log --oneline -1
 
       - name: Select Xcode version
         run: |
