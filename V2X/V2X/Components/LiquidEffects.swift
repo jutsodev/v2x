@@ -263,80 +263,6 @@ struct ConnectionButtonRings: View {
     }
 }
 
-// MARK: - Traffic Flow Particles
-struct TrafficFlowParticles: View {
-    let isActive: Bool
-    let uploadColor: Color
-    let downloadColor: Color
-    var particleCount: Int = 20
-
-    @State private var particles: [FlowParticle] = []
-
-    struct FlowParticle: Identifiable {
-        let id = UUID()
-        var x: CGFloat
-        var y: CGFloat
-        var size: CGFloat
-        var opacity: Double
-        var isUpload: Bool
-        var speed: Double
-    }
-
-    var body: some View {
-        Canvas { context, size in
-            for particle in particles {
-                let color = particle.isUpload ? uploadColor : downloadColor
-                var circle = Path()
-                circle.addEllipse(in: CGRect(
-                    x: particle.x * size.width - particle.size / 2,
-                    y: particle.y * size.height - particle.size / 2,
-                    width: particle.size,
-                    height: particle.size
-                ))
-                context.fill(circle, with: .color(color.opacity(particle.opacity)))
-            }
-        }
-        .onAppear {
-            generateParticles()
-            if isActive {
-                startAnimation()
-            }
-        }
-        .onChange(of: isActive) { active in
-            if active {
-                startAnimation()
-            }
-        }
-        .allowsHitTesting(false)
-    }
-
-    private func generateParticles() {
-        particles = (0..<particleCount).map { _ in
-            FlowParticle(
-                x: CGFloat.random(in: 0...1),
-                y: CGFloat.random(in: 0...1),
-                size: CGFloat.random(in: 1...4),
-                opacity: Double.random(in: 0.1...0.5),
-                isUpload: Bool.random(),
-                speed: Double.random(in: 0.5...2)
-            )
-        }
-    }
-
-    private func startAnimation() {
-        withAnimation(.linear(duration: 3).repeatForever(autoreverses: false)) {
-            for index in particles.indices {
-                if particles[index].isUpload {
-                    particles[index].y -= 0.3
-                } else {
-                    particles[index].y += 0.3
-                }
-                particles[index].opacity = Double.random(in: 0.05...0.4)
-            }
-        }
-    }
-}
-
 // MARK: - Glass Reflection
 struct GlassReflection: View {
     let cornerRadius: CGFloat
@@ -394,21 +320,4 @@ struct NeonText: View {
     }
 }
 
-// MARK: - GlassSectionCard
-struct GlassSectionCard<Content: View>: View {
-    @ViewBuilder let content: Content
 
-    var body: some View {
-        VStack(spacing: 0) {
-            content
-        }
-        .background(
-            RoundedRectangle(cornerRadius: 16)
-                .fill(.ultraThinMaterial.opacity(0.5))
-                .overlay(
-                    RoundedRectangle(cornerRadius: 16)
-                        .stroke(Color.white.opacity(0.06), lineWidth: 0.5)
-                )
-        )
-    }
-}

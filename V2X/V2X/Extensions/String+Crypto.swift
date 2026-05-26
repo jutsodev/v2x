@@ -111,14 +111,6 @@ extension String {
         return false
     }
 
-    // MARK: - Truncation
-    func truncated(to length: Int, trailing: String = "...") -> String {
-        if self.count > length {
-            return String(self.prefix(length)) + trailing
-        }
-        return self
-    }
-
     // MARK: - Server Address Masking
     var maskedAddress: String {
         guard self.count > 6 else { return "***" }

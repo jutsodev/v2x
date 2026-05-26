@@ -18,11 +18,10 @@ final class SubscriptionManager: ObservableObject {
         let subscription = V2XSubscription(
             name: name,
             url: url,
-            lastUpdated: nil,
             profileCount: 0,
-            isActive: true,
-            autoUpdate: true,
-            updateInterval: 24
+            lastUpdated: nil,
+            isAutoUpdate: true,
+            autoUpdateInterval: 24 * 3600
         )
         subscriptions.append(subscription)
         refreshSubscription(subscription)
@@ -39,11 +38,10 @@ final class SubscriptionManager: ObservableObject {
                     id: subscription.id,
                     name: subscription.name,
                     url: subscription.url,
-                    lastUpdated: Date(),
                     profileCount: Int.random(in: 5...20),
-                    isActive: subscription.isActive,
-                    autoUpdate: subscription.autoUpdate,
-                    updateInterval: subscription.updateInterval
+                    lastUpdated: Date(),
+                    isAutoUpdate: subscription.isAutoUpdate,
+                    autoUpdateInterval: subscription.autoUpdateInterval
                 )
             }
 
@@ -65,11 +63,10 @@ final class SubscriptionManager: ObservableObject {
                     id: self.subscriptions[i].id,
                     name: self.subscriptions[i].name,
                     url: self.subscriptions[i].url,
-                    lastUpdated: Date(),
                     profileCount: Int.random(in: 5...20),
-                    isActive: self.subscriptions[i].isActive,
-                    autoUpdate: self.subscriptions[i].autoUpdate,
-                    updateInterval: self.subscriptions[i].updateInterval
+                    lastUpdated: Date(),
+                    isAutoUpdate: self.subscriptions[i].isAutoUpdate,
+                    autoUpdateInterval: self.subscriptions[i].autoUpdateInterval
                 )
             }
 

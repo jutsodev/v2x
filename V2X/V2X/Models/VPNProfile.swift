@@ -241,6 +241,13 @@ struct TrafficStats: Equatable {
     var connectedSince: Date?
     var sessionUpload: Int64
     var sessionDownload: Int64
+    var ping: Int
+    var packetsIn: Int
+    var packetsOut: Int
+    var peakDownloadSpeed: Double
+    var peakUploadSpeed: Double
+    var totalDownload: Int64
+    var totalUpload: Int64
 
     init(
         uploadBytes: Int64 = 0,
@@ -250,7 +257,14 @@ struct TrafficStats: Equatable {
         downloadSpeed: Double = 0,
         connectedSince: Date? = nil,
         sessionUpload: Int64 = 0,
-        sessionDownload: Int64 = 0
+        sessionDownload: Int64 = 0,
+        ping: Int = 32,
+        packetsIn: Int = 1_542_867,
+        packetsOut: Int = 892_341,
+        peakDownloadSpeed: Double = 85_600_000,
+        peakUploadSpeed: Double = 15_200_000,
+        totalDownload: Int64 = 10_737_418_240,
+        totalUpload: Int64 = 4_294_967_296
     ) {
         self.uploadBytes = uploadBytes
         self.downloadBytes = downloadBytes
@@ -260,6 +274,13 @@ struct TrafficStats: Equatable {
         self.connectedSince = connectedSince
         self.sessionUpload = sessionUpload
         self.sessionDownload = sessionDownload
+        self.ping = ping
+        self.packetsIn = packetsIn
+        self.packetsOut = packetsOut
+        self.peakDownloadSpeed = peakDownloadSpeed
+        self.peakUploadSpeed = peakUploadSpeed
+        self.totalDownload = totalDownload
+        self.totalUpload = totalUpload
     }
 
     var formattedUpload: String {
@@ -280,6 +301,10 @@ struct TrafficStats: Equatable {
 
     var formattedDownloadSpeed: String {
         ByteCountFormatter.string(fromByteCount: Int64(downloadSpeed), countStyle: .binary) + "/s"
+    }
+
+    var formattedDuration: String {
+        String.formatDuration(connectionDuration)
     }
 
     var connectionDuration: TimeInterval {

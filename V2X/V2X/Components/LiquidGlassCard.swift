@@ -112,15 +112,11 @@ struct ThemedGlassCard<Content: View>: View {
 
 // MARK: - Glass Section Card
 struct GlassSectionCard<Content: View>: View {
-    let content: () -> Content
-
-    init(@ViewBuilder content: @escaping () -> Content) {
-        self.content = content
-    }
+    @ViewBuilder let content: Content
 
     var body: some View {
         VStack(spacing: 0) {
-            content()
+            content
         }
         .background(
             RoundedRectangle(cornerRadius: 16)

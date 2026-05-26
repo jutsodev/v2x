@@ -59,7 +59,6 @@
 		3A663D71CBF345A9A8E6AAC2 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0FDC7C5DEF641D496EA2464 /* SettingsView.swift */; };
 		B6104D98336C4B40A08A789C /* ShareProxyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6F6AC2B2C148A4B6DB5D48 /* ShareProxyView.swift */; };
 		A4B4F5758B73467C8B0929CE /* SpeedTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9C9BA4F2EC4141BC822217 /* SpeedTestView.swift */; };
-		7D1EB9F524A748A99C7A173E /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A129DE1587438E84853496 /* SplashView.swift */; };
 		AD425C044F5F4FC1829FCA97 /* StatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91CC9DCE4FA485BB1BC8E24 /* StatisticsView.swift */; };
 		7D6B4695C01C4E49AF37391E /* SubscriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06575091B6A94A3E9D9366C6 /* SubscriptionView.swift */; };
 		AB8CE092EADC460BB88A2914 /* ThemePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70175F3FF5CC4CBF9E346A0E /* ThemePickerView.swift */; };
@@ -122,7 +121,6 @@
 		F0FDC7C5DEF641D496EA2464 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		CC6F6AC2B2C148A4B6DB5D48 /* ShareProxyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareProxyView.swift; sourceTree = "<group>"; };
 		7A9C9BA4F2EC4141BC822217 /* SpeedTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedTestView.swift; sourceTree = "<group>"; };
-		14A129DE1587438E84853496 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		A91CC9DCE4FA485BB1BC8E24 /* StatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsView.swift; sourceTree = "<group>"; };
 		06575091B6A94A3E9D9366C6 /* SubscriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionView.swift; sourceTree = "<group>"; };
 		70175F3FF5CC4CBF9E346A0E /* ThemePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemePickerView.swift; sourceTree = "<group>"; };
@@ -258,7 +256,6 @@
 				F0FDC7C5DEF641D496EA2464 /* SettingsView.swift */,
 				CC6F6AC2B2C148A4B6DB5D48 /* ShareProxyView.swift */,
 				7A9C9BA4F2EC4141BC822217 /* SpeedTestView.swift */,
-				14A129DE1587438E84853496 /* SplashView.swift */,
 				A91CC9DCE4FA485BB1BC8E24 /* StatisticsView.swift */,
 				06575091B6A94A3E9D9366C6 /* SubscriptionView.swift */,
 				70175F3FF5CC4CBF9E346A0E /* ThemePickerView.swift */,
@@ -385,7 +382,6 @@
 				3A663D71CBF345A9A8E6AAC2 /* SettingsView.swift in Sources */,
 				B6104D98336C4B40A08A789C /* ShareProxyView.swift in Sources */,
 				A4B4F5758B73467C8B0929CE /* SpeedTestView.swift in Sources */,
-				7D1EB9F524A748A99C7A173E /* SplashView.swift in Sources */,
 				AD425C044F5F4FC1829FCA97 /* StatisticsView.swift in Sources */,
 				7D6B4695C01C4E49AF37391E /* SubscriptionView.swift in Sources */,
 				AB8CE092EADC460BB88A2914 /* ThemePickerView.swift in Sources */,

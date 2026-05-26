@@ -55,13 +55,14 @@ final class ThreatShield: ObservableObject {
         ]
 
         let types: [ThreatEvent.ThreatType] = [.tracker, .ad, .malware, .phishing]
+        let severities: [ThreatEvent.ThreatSeverity] = [.low, .medium, .high, .critical]
 
         for i in 0..<20 {
             let event = ThreatEvent(
                 type: types[i % types.count],
-                source: domains[i % domains.count],
+                domain: domains[i % domains.count],
                 timestamp: Date().addingTimeInterval(-Double(i * 30)),
-                blocked: true
+                severity: severities[i % severities.count]
             )
             recentEvents.append(event)
         }
@@ -82,12 +83,13 @@ final class ThreatShield: ObservableObject {
     private func simulateNewEvent() {
         let domains = ["tracker.fb.com", "ads.doubleclick.net", "pixel.twitter.com", "analytics.google.com"]
         let types: [ThreatEvent.ThreatType] = [.tracker, .ad, .tracker, .ad, .malware]
+        let severities: [ThreatEvent.ThreatSeverity] = [.low, .medium, .high]
 
         let event = ThreatEvent(
             type: types.randomElement() ?? .tracker,
-            source: domains.randomElement() ?? "unknown",
+            domain: domains.randomElement() ?? "unknown",
             timestamp: Date(),
-            blocked: true
+            severity: severities.randomElement() ?? .medium
         )
 
         withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
@@ -103,6 +105,7 @@ final class ThreatShield: ObservableObject {
         case .ad: adsBlocked += 1
         case .malware: malwareBlocked += 1
         case .phishing: phishingBlocked += 1
+        case .crypto, .fingerprint: trackersBlocked += 1
         }
     }
 }

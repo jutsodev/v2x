@@ -147,6 +147,19 @@ final class VPNManager: ObservableObject {
         )
     }
 
+    // MARK: - Computed Properties
+    var isConnected: Bool {
+        connectionState == .connected
+    }
+
+    var isMuxEnabled: Bool {
+        connectionState == .connected
+    }
+
+    var isFragmentEnabled: Bool {
+        fragmentationEnabled
+    }
+
     // MARK: - Connection Timer
     var connectionDuration: TimeInterval {
         guard let since = connectedSince else { return 0 }

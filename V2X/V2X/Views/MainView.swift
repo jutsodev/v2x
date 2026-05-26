@@ -301,7 +301,7 @@ struct MainView: View {
                                     .foregroundColor(.v2xTextTertiary)
                             }
                             Spacer()
-                            Text("\(server.ping) ms")
+                            Text("\(server.ping ?? 0) ms")
                                 .font(.system(size: 13, weight: .bold, design: .monospaced))
                                 .foregroundColor(.v2xGreen)
                         }
@@ -391,36 +391,6 @@ struct QuickActionCard: View {
             }
         }
         .buttonStyle(LiquidPressButtonStyle())
-    }
-}
-
-// MARK: - Score Gauge
-struct ScoreGauge: View {
-    let label: String
-    let score: Double
-    let color: Color
-
-    var body: some View {
-        VStack(spacing: 4) {
-            ZStack {
-                Circle()
-                    .stroke(color.opacity(0.15), lineWidth: 3)
-                Circle()
-                    .trim(from: 0, to: score)
-                    .stroke(color, style: StrokeStyle(lineWidth: 3, lineCap: .round))
-                    .rotationEffect(.degrees(-90))
-
-                Text("\(Int(score * 100))")
-                    .font(.system(size: 10, weight: .bold, design: .monospaced))
-                    .foregroundColor(color)
-            }
-            .frame(width: 36, height: 36)
-
-            Text(label)
-                .font(.system(size: 9, weight: .medium))
-                .foregroundColor(.v2xTextTertiary)
-                .lineLimit(1)
-        }
     }
 }
 
